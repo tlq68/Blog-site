@@ -4,7 +4,15 @@
     <% compositions.forEach((composition) => { %>
     <div class="content">
         <h2><%= composition.postTitle %></h2>
-        <p><%= composition.postBody %></p>
+        <% if (composition.postBody.length >= 100) { %>
+            <p><%= composition.postBody.slice(0,99) %>...
+                
+                <a id="postLink" href="/posts/<%= composition.postTitle %>">Read more</a>
+            </p>
+        <% } else { %>
+            <p><%= composition.postBody %></p>
+        <% } %>
+            
     </div>
     <% }) %>
 <%- console.log(compositions) -%>

@@ -11,7 +11,6 @@ let compositions = [];
 
 const app = express();
 
-
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended: true}))
@@ -43,15 +42,21 @@ app.post("/compose", (req, res) => {
   res.redirect("/");
 });
 
+app.get("/posts", (req, res) => {
+  res.redirect("/");
+})
+
 
 app.get("/posts/:postName", (req, res) => {
   const post = req.params.postName
+  
   compositions.forEach((composition) => {
+    const postTitle = composition.postTitle
+    const postBody = composition.postBody
+    
     if (_.lowerCase(post) === _.lowerCase(composition.postTitle)) {
-      console.log("Match Found!")
+      res.render("post", {postTitle: postTitle, postBody: postBody})
       return;
-    } else {
-      console.log("Match not found.")
     }
   })
 })
