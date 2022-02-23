@@ -17,12 +17,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  const object = compositions[0]
-  const title = object.postTitle;
-  const composition = object.postBody;
-
-  console.log(object)
-  res.render("home", {titleContent: title, compositionContent: composition});
+  res.render("home", {startingContent: homeStartingContent, compositions: compositions});
 });
 
 app.get("/about", (req, res) => {

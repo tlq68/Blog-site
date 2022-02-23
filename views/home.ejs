@@ -1,8 +1,13 @@
 <%- include("partials/header") -%>
 
 <h1>Home</h1>
-<h2><%= titleContent %></h2>
+    <% compositions.forEach((composition) => { %>
+    <div class="content">
+        <h2><%= composition.postTitle %></h2>
+        <p><%= composition.postBody %></p>
+    </div>
+    <% }) %>
+<%- console.log(compositions) -%>
 
-<%= compositionContent %>
 
 <%- include("partials/footer") -%>
